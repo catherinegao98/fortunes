@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Index QR</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {font-family: system-ui, Arial; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; gap:12px; margin:0;}
+    #qrcode {width: 320px; height: 320px;}
+    input {width: min(90vw, 680px); padding: 10px; font-size: 16px;}
+    button {padding: 10px 14px; font-size: 16px; cursor: pointer;}
+  </style>
+</head>
+<body>
+  <h1>QR for Index Page</h1>
+  <input id="url" placeholder="Paste your full index.html URL here" />
+  <button onclick="make()">Generate</button>
+  <div id="qrcode"></div>
+  <script>
+    function baseIndex() {
+      // auto-suggest current folder's index.html
+      const {origin, pathname} = location;
+      let path = pathname.endsWith('/') ? pathname : pathname.substring(0, pathname.lastIndexOf('/') + 1);
+      return origin + path + 'index.html';
+    }
+    document.getElementById('url').value = baseIndex();
+    function make() {
+      const url = document.getElementById('url').value.trim();
+      document.getElementById('qrcode').innerHTML = '';
+      new QRCode(document.getElementById('qrcode'), { text: url, width: 320, height: 320 });
+    }
+    make();
+  </script>
+</body>
+</html>
