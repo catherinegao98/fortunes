@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fortunes</title>
+  <style>
+    body {font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif; margin: 40px; line-height: 1.6; background: #fafafa;}
+    .card {max-width: 560px; margin: 8vh auto; padding: 24px; border: 1px solid #eee; border-radius: 16px; background: #fff; box-shadow: 0 6px 24px rgba(0,0,0,.06);}
+    h1 {margin: 0 0 8px;}
+    .hint {color: #666; font-size: 14px; margin: 0 0 16px;}
+    input, button {padding: 10px 14px; font-size: 16px;}
+    input {width: 100%; box-sizing: border-box; margin: 12px 0 16px;}
+    button {cursor: pointer; border: 1px solid #ddd; border-radius: 8px; background: #f7f7f7;}
+    .grid {display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px;}
+    .grid a {display:block; text-align:center; padding:8px; border:1px solid #eee; border-radius:8px; text-decoration:none; color:#333; background:#fafafa;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Fortunes</h1>
+    <p class="hint">Enter a number (1–50), or tap a card below.</p>
+    <input id="codeInput" type="number" placeholder="e.g., 1" min="1" max="50" />
+    <button id="goBtn">Go</button>
+
+    <div class="grid">
+      <a href="fortune1.html">#1</a><a href="fortune2.html">#2</a><a href="fortune3.html">#3</a><a href="fortune4.html">#4</a><a href="fortune5.html">#5</a><a href="fortune6.html">#6</a><a href="fortune7.html">#7</a><a href="fortune8.html">#8</a><a href="fortune9.html">#9</a><a href="fortune10.html">#10</a><a href="fortune11.html">#11</a><a href="fortune12.html">#12</a><a href="fortune13.html">#13</a><a href="fortune14.html">#14</a><a href="fortune15.html">#15</a><a href="fortune16.html">#16</a><a href="fortune17.html">#17</a><a href="fortune18.html">#18</a><a href="fortune19.html">#19</a><a href="fortune20.html">#20</a><a href="fortune21.html">#21</a><a href="fortune22.html">#22</a><a href="fortune23.html">#23</a><a href="fortune24.html">#24</a><a href="fortune25.html">#25</a><a href="fortune26.html">#26</a><a href="fortune27.html">#27</a><a href="fortune28.html">#28</a><a href="fortune29.html">#29</a><a href="fortune30.html">#30</a><a href="fortune31.html">#31</a><a href="fortune32.html">#32</a><a href="fortune33.html">#33</a><a href="fortune34.html">#34</a><a href="fortune35.html">#35</a><a href="fortune36.html">#36</a><a href="fortune37.html">#37</a><a href="fortune38.html">#38</a><a href="fortune39.html">#39</a><a href="fortune40.html">#40</a><a href="fortune41.html">#41</a><a href="fortune42.html">#42</a><a href="fortune43.html">#43</a><a href="fortune44.html">#44</a><a href="fortune45.html">#45</a><a href="fortune46.html">#46</a><a href="fortune47.html">#47</a><a href="fortune48.html">#48</a><a href="fortune49.html">#49</a><a href="fortune50.html">#50</a>
+    </div>
+  </div>
+
+  <script>
+    function go() {
+      var v = parseInt(document.getElementById('codeInput').value, 10);
+      if (!isNaN(v) && v >= 1 && v <= 50) {
+        location.href = 'fortune' + v + '.html';
+      } else {
+        alert('Please enter a number between 1 and 50.');
+      }
+    }
+    document.getElementById('goBtn').addEventListener('click', go);
+    document.getElementById('codeInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') go();
+    });
+
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var id = parseInt(params.get('id'), 10);
+      if (!isNaN(id) && id >= 1 && id <= 50) {
+        location.replace('fortune' + id + '.html');
+      }
+    })();
+  </script>
+</body>
+</html>
